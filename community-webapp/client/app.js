@@ -1,6 +1,9 @@
 import React from 'react'
 import ReactDom from 'react-dom'
-import { AppContainer } from 'react-hot-loader'
+
+// 开发的时候才会用到
+import { AppContainer } from 'react-hot-loader' // eslint-disable-line
+
 import App from './App.jsx'
 
 // react-dom 里面是用 render 方法去把内容渲染到 html 里面。
