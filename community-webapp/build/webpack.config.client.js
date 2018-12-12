@@ -1,43 +1,24 @@
 const path = require('path')
 const webpack = require('webpack')
+const webpackMerge = require('webpack-merge') // 专门用来合并 webpack 的一些配置的包 || 深度拷贝，不会把内容覆盖，而是与里面的内容一一对比
+const baseConfig = require('./webpack.base')
 const HTMLPlugin = require('html-webpack-plugin')
 const isDev = process.env.NODE_ENV === 'development'
 
-const config = {
+const config = webpackMerge(baseConfig, {
   mode: 'development',
   entry: {  // 打包的入口
     app: path.join(__dirname, '../client/app.js')
   },
   output: { // 打包的出口
     filename: '[name].[hash].js',
-    path: path.join(__dirname, '../dist'),
-    publicPath: '/public/'
-  },
-  module: {
-    rules: [
-      {
-        enforce: 'pre',
-        test: /\.(js|jsx)$/,
-        loader: 'eslint-loader',
-        exclude: /node_modules/
-      },
-      {
-        test: /.jsx$/,
-        loader: 'babel-loader'
-      },
-      {
-        test: /.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/
-      }
-    ]
   },
   plugins: [
     new HTMLPlugin({
       template: path.join(__dirname, '../client/template.html')
     })  // 生成一个 html 页面。同时在 webpack 编译时，把所生成的所有 entry 都注入到 html 中，路径、名字也是根据 output 配置而成的
   ]
-}
+})
 
 if (isDev) {
   config.entry = {
