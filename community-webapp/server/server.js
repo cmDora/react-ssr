@@ -1,4 +1,5 @@
 const express = require('express')
+const favicon = require('serve-favicon')
 const ReactSSR = require('react-dom/server')
 const fs = require('fs')
 
@@ -8,6 +9,8 @@ const path = require('path')
 const isDev = process.env.NODE_ENV === 'development'
 
 const app = express()
+
+app.use(favicon(path.join(__dirname, '../favicon.ico')))
 
 if (!isDev) {
   // require 方式默认不会去读 default 的内容，而是拿到整个 export 的东西

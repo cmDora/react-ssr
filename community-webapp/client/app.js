@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDom from 'react-dom'
 
 // 开发的时候才会用到
-import { AppContainer } from 'react-hot-loader'
+import { AppContainer } from 'react-hot-loader' // eslint-disable-line
 
 import App from './App.jsx'
 
