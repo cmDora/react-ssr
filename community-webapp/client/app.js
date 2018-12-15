@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDom from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 // 开发的时候才会用到
 import { AppContainer } from 'react-hot-loader' // eslint-disable-line
 
-import App from './App.jsx'
+import App from './views/App'
 
 // react-dom 里面是用 render 方法去把内容渲染到 html 里面。
 // 现在新加了一个方法 hydrate。
@@ -17,7 +18,9 @@ const root = document.getElementById('root')
 const render = (Component) => {
   ReactDom.hydrate(
     <AppContainer>
-      <Component />
+      <BrowserRouter>
+        <Component />
+      </BrowserRouter>
     </AppContainer>,
     root,
   )
@@ -26,8 +29,8 @@ const render = (Component) => {
 render(App)
 
 if (module.hot) {
-  module.hot.accept('./App.jsx', () => {
-    const NextApp = require('./App.jsx').default // eslint-disable-line
+  module.hot.accept('./views/App', () => {
+    const NextApp = require('./views/App').default // eslint-disable-line
     render(NextApp)
     // ReactDom.hydrate(<NextApp />, document.getElementById('root'))
   })

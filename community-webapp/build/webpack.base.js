@@ -4,7 +4,10 @@ module.exports = {
 	output: {
 		path: path.join(__dirname, '../dist'),
 		publicPath: '/public/'
-	},
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
+  },
 	module: {
 		rules: [
 			{
