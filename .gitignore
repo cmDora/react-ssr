@@ -1,7 +1,12 @@
+# dependencies
+/node_modules
+
 # production
 /dist
 
 # misc
 .DS_Store
+._.DS_Store
 .idea
 .env
+.vscode
